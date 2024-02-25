@@ -1,42 +1,54 @@
-let gameSeq = [];
-let userSeq = [];
+// adding user flash function to track the user activity
+ // also updating btn flash function as game flash function
+ // those function helps in track the clicking events of the user.
+    function userFlash(btn) {
+    btn.classList.add("userFlash"); 
+    setTimeout(function() {
+        btn.classList.remove("userFlash")
+     }, 250);
+}
 
-let btns = ['yellow','purple', 'red', 'green']; // manipulating the buttons by their classes
-
-let started = false ;
-let level = 0 ;
-
-let h2 = document.querySelector("h2");
-
-document.addEventListener('keypress', function () {
-    if(started == false) {
-        console.log("game has started.");
-        started = true ;
-
-        levelUp();
-
-    }
-});
-
-function btnFlash(btn) {
+function gameFlash(btn) {
     btn.classList.add("flash"); 
     setTimeout(function() {
         btn.classList.remove("flash")
      }, 250);
 }
 
-function levelUp() {
-    level ++ ;
-    h2.innerText = `Level ${level}`;
+// today manipulating arrays gameseq[] and userseq[]
 
-    let randIdx = Math.floor(Math.random()*3);  
-    let randColor = btns[randIdx];
-    let randbtn = document.querySelector(`.${randColor}`);
-    console.log(randIdx);
-    console.log(randColor);
-    console.log(randbtn);
-    btnFlash(randbtn);
+function btnPress() {
+    let btn = this;
+    console.log(this)
+    userFlash(btn);
+
+    userColor = btn.getAttribute("id") ;
+    console.log(userColor);
+}
+
+// making a check ans function to check sequence is correct or not
+
+function checkAns(idx) {
+   
+    if(userSeq[idx] === gameSeq[idx]) {
+        if (userSeq.length === gameSeq.length) {
+            levelUp();
+        }
+
+    } else {
+        h2.innerText = "Game Over ! Press any key to Start.";
+    }
 
 }
 
+function btnPress() {
+    let btn = this;
+    console.log(this)
+    userFlash(btn);
+
+    userColor = btn.getAttribute("id") ;
+    userSeq.push(userColor);
+
+    checkAns(userSeq.length -1);
+}
 
