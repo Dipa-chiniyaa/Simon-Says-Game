@@ -13,3 +13,5 @@
 
 <h3>Version 2.o</h3>
 <p> this version contains a major change in action of game.</p>
+
+https://chiragaug6.github.io/real-estate-full-page-website/
